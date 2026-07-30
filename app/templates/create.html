@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo Item{% endblock %}
+{% block content %}
+    <h2>Nuevo Item</h2>
+    <form method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="name" required>
+        <label>Descripción:</label>
+        <textarea name="description" rows="4"></textarea>
+        <button type="submit" class="btn">Guardar</button>
+        <a href="{{ url_for('main.index') }}" class="btn btn-edit">Cancelar</a>
+    </form>
+{% endblock %}

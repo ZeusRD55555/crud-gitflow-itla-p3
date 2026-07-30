@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Editar Item{% endblock %}
+{% block content %}
+    <h2>Editar Item</h2>
+    <form method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="name" value="{{ item.name }}" required>
+        <label>Descripción:</label>
+        <textarea name="description" rows="4">{{ item.description or '' }}</textarea>
+        <button type="submit" class="btn">Actualizar</button>
+        <a href="{{ url_for('main.index') }}" class="btn btn-edit">Cancelar</a>
+    </form>
+{% endblock %}
