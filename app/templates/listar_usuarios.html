@@ -5,6 +5,15 @@
     <h2 class="mb-0">Usuarios</h2>
     <a href="{{ url_for('main.crear_usuario') }}" class="btn btn-primary">Nuevo Usuario</a>
 </div>
+<form method="GET" action="{{ url_for('main.listar_usuarios') }}" class="row g-2 mb-3">
+    <div class="col-auto flex-grow-1">
+        <input type="text" class="form-control" name="q" placeholder="Buscar por nombre..." value="{{ q }}">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary me-1">Buscar</button>
+        <a href="{{ url_for('main.listar_usuarios') }}" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
         <tr>
