@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Crear Usuario{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">Crear Usuario</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ nombre or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" name="correo" value="{{ correo or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" value="{{ telefono or '' }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Usuarios{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Usuarios</h2>
+    <a href="{{ url_for('main.crear_usuario') }}" class="btn btn-primary">Nuevo Usuario</a>
+</div>
+<form method="GET" action="{{ url_for('main.listar_usuarios') }}" class="row g-2 mb-3">
+    <div class="col-auto flex-grow-1">
+        <input type="text" class="form-control" name="q" placeholder="Buscar por nombre..." value="{{ q }}">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary me-1">Buscar</button>
+        <a href="{{ url_for('main.listar_usuarios') }}" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in usuarios %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.correo }}</td>
+            <td>{{ u.telefono }}</td>
+            <td>
+                <a href="{{ url_for('main.editar_usuario', id=u.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                <form action="{{ url_for('main.eliminar_usuario', id=u.id) }}" method="POST" style="display:inline">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" class="text-center">No hay usuarios registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

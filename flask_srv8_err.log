@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\__main__.py", line 3, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 1105, in main
+    cli.main()
+    ~~~~~~~~^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\core.py", line 1490, in main
+    rv = self.invoke(ctx)
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\decorators.py", line 93, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\click\core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 953, in run_command
+    raise e from None
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 937, in run_command
+    app: WSGIApplication = info.load_app()
+                           ~~~~~~~~~~~~~^^
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 339, in load_app
+    app = locate_app(import_name, None, raise_if_not_found=False)
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 262, in locate_app
+    return find_best_app(module)
+  File "C:\Users\angel\AppData\Local\Programs\Python\Python314\Lib\site-packages\flask\cli.py", line 72, in find_best_app
+    app = app_factory()
+  File "C:\Users\angel\Documents\Default Project\crud-gitflow-itla-p3\app\__init__.py", line 15, in create_app
+    from . import models, routes
+  File "C:\Users\angel\Documents\Default Project\crud-gitflow-itla-p3\app\routes.py", line 121
+    usuario.nombre = nombre
+IndentationError: unexpected indent
