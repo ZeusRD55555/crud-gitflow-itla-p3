@@ -8,6 +8,7 @@
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Teléfono</th>
@@ -17,6 +18,7 @@
     <tbody>
         {% for u in usuarios %}
         <tr>
+            <td>{{ u.id }}</td>
             <td>{{ u.nombre }}</td>
             <td>{{ u.correo }}</td>
             <td>{{ u.telefono }}</td>
@@ -27,7 +29,7 @@
         </tr>
         {% else %}
         <tr>
-            <td colspan="4" class="text-center">No hay usuarios registrados.</td>
+            <td colspan="5" class="text-center">No hay usuarios registrados.</td>
         </tr>
         {% endfor %}
     </tbody>
