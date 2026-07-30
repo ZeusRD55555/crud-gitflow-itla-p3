@@ -118,3 +118,11 @@ def editar_usuario(id):
         return redirect(url_for('main.listar_usuarios'))
 
     return render_template('editar_usuario.html', usuario=usuario)
+
+@main_bp.route('/usuarios/eliminar/<int:id>', methods=['POST'])
+def eliminar_usuario(id):
+    usuario = User.query.get_or_404(id)
+    db.session.delete(usuario)
+    db.session.commit()
+    flash('Usuario eliminado exitosamente.', 'success')
+    return redirect(url_for('main.listar_usuarios'))
