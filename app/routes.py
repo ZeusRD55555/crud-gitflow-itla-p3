@@ -108,7 +108,15 @@ def editar_usuario(id):
         if errores:
             for e in errores:
                 flash(e, 'danger')
-            return render_template('editar_usuario.html', usuario=usuario)
+    return render_template('editar_usuario.html', usuario=usuario)
+
+@main_bp.route('/usuarios/eliminar/<int:id>', methods=['POST'])
+def eliminar_usuario(id):
+    usuario = User.query.get_or_404(id)
+    db.session.delete(usuario)
+    db.session.commit()
+    flash('Usuario eliminado exitosamente.', 'success')
+    return redirect(url_for('main.listar_usuarios'))
 
         usuario.nombre = nombre
         usuario.correo = correo
