@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo Item{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">Nuevo Item</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
