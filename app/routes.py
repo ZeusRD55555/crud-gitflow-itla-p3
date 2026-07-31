@@ -112,6 +112,14 @@ def editar_usuario(id):
         if errores:
             for e in errores:
                 flash(e, 'danger')
+        else:
+            usuario.nombre = nombre
+            usuario.correo = correo
+            usuario.telefono = telefono
+            db.session.commit()
+            flash('Usuario actualizado exitosamente.', 'success')
+            return redirect(url_for('main.listar_usuarios'))
+
     return render_template('editar_usuario.html', usuario=usuario)
 
 @main_bp.route('/usuarios/eliminar/<int:id>', methods=['POST'])
@@ -121,12 +129,3 @@ def eliminar_usuario(id):
     db.session.commit()
     flash('Usuario eliminado exitosamente.', 'success')
     return redirect(url_for('main.listar_usuarios'))
-
-        usuario.nombre = nombre
-        usuario.correo = correo
-        usuario.telefono = telefono
-        db.session.commit()
-        flash('Usuario actualizado exitosamente.', 'success')
-        return redirect(url_for('main.listar_usuarios'))
-
-    return render_template('editar_usuario.html', usuario=usuario)
