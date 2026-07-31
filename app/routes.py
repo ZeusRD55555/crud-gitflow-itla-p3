@@ -79,3 +79,42 @@ def crear_usuario():
         return redirect(url_for('main.crear_usuario'))
 
     return render_template('crear_usuario.html')
+
+@main_bp.route('/usuarios/editar/<int:id>', methods=['GET', 'POST'])
+def editar_usuario(id):
+    usuario = User.query.get_or_404(id)
+    if request.method == 'POST':
+        nombre = request.form.get('nombre', '').strip()
+        correo = request.form.get('correo', '').strip()
+        telefono = request.form.get('telefono', '').strip()
+
+        errores = []
+        if not nombre:
+            errores.append('El nombre es obligatorio.')
+        if not correo:
+            errores.append('El correo es obligatorio.')
+        elif not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', correo):
+            errores.append('El correo no tiene un formato válido.')
+        if not telefono:
+            errores.append('El teléfono es obligatorio.')
+        elif not re.match(r'^\+?[\d\s\-\(\)]{7,20}$', telefono):
+            errores.append('El teléfono no tiene un formato válido.')
+
+        if not errores and correo != usuario.correo:
+            existe = User.query.filter_by(correo=correo).first()
+            if existe:
+                errores.append('El correo ya está registrado por otro usuario.')
+
+        if errores:
+            for e in errores:
+                flash(e, 'danger')
+            return render_template('editar_usuario.html', usuario=usuario)
+
+        usuario.nombre = nombre
+        usuario.correo = correo
+        usuario.telefono = telefono
+        db.session.commit()
+        flash('Usuario actualizado exitosamente.', 'success')
+        return redirect(url_for('main.listar_usuarios'))
+
+    return render_template('editar_usuario.html', usuario=usuario)
