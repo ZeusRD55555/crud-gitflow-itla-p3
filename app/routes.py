@@ -40,8 +40,12 @@ def delete(id):
 
 @main_bp.route('/usuarios')
 def listar_usuarios():
-    usuarios = User.query.all()
-    return render_template('listar_usuarios.html', usuarios=usuarios)
+    q = request.args.get('q', '').strip()
+    if q:
+        usuarios = User.query.filter(User.nombre.contains(q)).all()
+    else:
+        usuarios = User.query.all()
+    return render_template('listar_usuarios.html', usuarios=usuarios, q=q)
 
 @main_bp.route('/usuarios/crear', methods=['GET', 'POST'])
 def crear_usuario():
