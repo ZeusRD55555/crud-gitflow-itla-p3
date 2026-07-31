@@ -38,6 +38,11 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('main.index'))
 
+@main_bp.route('/usuarios')
+def listar_usuarios():
+    usuarios = User.query.all()
+    return render_template('listar_usuarios.html', usuarios=usuarios)
+
 @main_bp.route('/usuarios/crear', methods=['GET', 'POST'])
 def crear_usuario():
     if request.method == 'POST':
